@@ -3,6 +3,7 @@ import json
 import os
 from dotenv import load_dotenv
 from tavily import TavilyClient
+from datetime import datetime
 
 # Competitor Intelligence Agent
 # Takes a company name, searches the web for real data,
@@ -48,3 +49,9 @@ content = response.json()['message']['content']
 content = content.replace("```json", "").replace("```", "").strip()
 data = json.loads(content)
 print(content)
+
+today = datetime.now().strftime("%Y-%m-%d_%H-%M")
+
+os.makedirs("reports", exist_ok=True)
+with open(f"reports/{company}_{today}.json", "w") as f:
+    json.dump(data, f, indent=2)
