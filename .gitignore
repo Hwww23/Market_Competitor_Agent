@@ -1,7 +1,5 @@
-# Python virtual environments
 venv/
-
-# Environment variables / secrets
 .env
-
 reports/
+__pycache__/
+*.pyc
